@@ -15,21 +15,45 @@
                     <nuxt-link class="nav-link" to="/posts">Posts</nuxt-link>
                 </li>
             </ul>
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
-                    <nuxt-link class="nav-link" to="/login">Login</nuxt-link>
-                </li>
-                <li class="nav-item">
-                    <nuxt-link class="nav-link" to="/register">Register</nuxt-link>
-                </li>
-            </ul>
+            <template v-if="!authenticated">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <nuxt-link class="nav-link" to="/login">Login</nuxt-link>
+                    </li>
+                    <li class="nav-item">
+                        <nuxt-link class="nav-link" to="/register">Register</nuxt-link>
+                    </li>
+                </ul>
+            </template>
+            <template v-if="authenticated">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link">{{user.name}}</a>
+                    </li>
+                    <li class="nav-item">
+                        <a @click.prevent="logout" class="nav-link" to="/logout">Logout</a>
+                    </li>
+                </ul>
+            </template>
         </div>
     </nav>
 </template>
 
 <script>
+    // import {mapGetters} from 'vuex'
+
     export default {
-        name: "Navbar"
+        name: "Navbar",
+        // computed: {
+        //     ...mapGetters({
+        //         loggedIn: "auth/authenticated"
+        //     })
+        // }
+       methods:{
+            logout(){
+                this.$auth.logout();
+            }
+       }
     }
 </script>
 

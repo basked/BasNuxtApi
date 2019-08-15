@@ -32,7 +32,9 @@ export default {
     /*
     ** Plugins to load before mounting the App
     */
-    plugins: [],
+    plugins: [
+        "./plugins/mixins/user.js"
+    ],
     /*
     ** Nuxt.js dev-modules
     */
@@ -44,8 +46,8 @@ export default {
         '@nuxtjs/axios',
         '@nuxtjs/auth'
     ],
-    axioe: {
-        baseURL: 'http://basnuxtapi:3000/api/nuxt'
+    axios: {
+        baseURL: 'http://datascrap.bas/api/nuxt/'
     },
 
     auth: {

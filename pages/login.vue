@@ -39,7 +39,7 @@
             async submit() {
                 await this.$auth.loginWith('local', {
                     data: this.form
-                })
+                });
                 this.$router.push('/');
             }
         }
